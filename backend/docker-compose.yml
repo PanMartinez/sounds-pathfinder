@@ -1,0 +1,28 @@
+version: "0.0.1"
+
+services:
+  core:
+    container_name: spf-core
+    build: .
+    environment:
+      DEBUG: 1
+    volumes:
+      - .:/spf-backend/
+    ports:
+      - 80:8000
+    restart: on-failure
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: sounds-pathfinder-test-pass
+    volumes:
+    - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  db_data:

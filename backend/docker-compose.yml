@@ -1,18 +1,21 @@
 version: "0.0.1"
 
 services:
-  core:
+  spf-core:
     container_name: spf-core
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       DEBUG: 1
     volumes:
-      - .:/spf-backend/
+      - ./core:/spf-core/core
     ports:
-      - 80:8000
+      - "8000:8000"
     restart: on-failure
     depends_on:
       - db
+    command: uvicorn core.main:app --host 0.0.0.0 --port 8000 --reload
 
   db:
     image: postgres

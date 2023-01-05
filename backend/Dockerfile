@@ -2,10 +2,9 @@
 # ---- core image ----- #
 # --------------------- #
 
-# ------ python ------- #
 FROM python:3.11 as builder
 
-WORKDIR /spf-backend
+WORKDIR /spf-core
 
 COPY . .
 
@@ -15,9 +14,7 @@ RUN poetry config --local virtualenvs.in-project true  && poetry install
 
 FROM python:3.11-alpine3.17
 
-WORKDIR /spf-backend
+WORKDIR /spf-core
 
-COPY --from=builder /spf-backend /spf-backend
-ENV PATH=/spf-backend/.venv/bin:$PATH
-
-CMD ["uvicorn", "core.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+COPY --from=builder /spf-core /spf-core
+ENV PATH=/spf-core/.venv/bin:$PATH

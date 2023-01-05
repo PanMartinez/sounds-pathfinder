@@ -8,4 +8,4 @@ auth_router = APIRouter()
 
 @auth_router.get("/")
 async def test_router():
-    return {"message": "Hello World Bogdan"}
+    return {"message": "Hello, you reloading World"}

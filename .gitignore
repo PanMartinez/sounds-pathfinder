@@ -1,0 +1,43 @@
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### PyCharm ###
+.idea/
+
+
+### Python ###
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache
+
+
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# Environments
+.env
+
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+### Python Patch ###
+poetry.toml
+
+# ruff
+.ruff_cache/

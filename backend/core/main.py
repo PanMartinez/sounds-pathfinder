@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from core.common.routers import app_routers
 from core.common.middlewares import app_middlewares
 
+
 # We are starting core
 app = FastAPI()
 

@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from backend.app.config.db import init_db
+from app.config.db import init_db
 
 
 @asynccontextmanager

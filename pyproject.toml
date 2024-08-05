@@ -5,7 +5,7 @@ requires = [
 ]
 
 [tool.poetry]
-name = "sounds-pathfinder"
+name = "soundfinder"
 version = "0.1.0"
 description = ""
 authors = ["PanMartinez <marcinplotka88@gmail.com>"]

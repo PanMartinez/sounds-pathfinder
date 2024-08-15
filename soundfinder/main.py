@@ -1,18 +1,19 @@
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
+from soundfinder.config.db import engine, SessionLocal
+from soundfinder.config.settings import Settings
+from soundfinder.models.common import Base
 
-from app.config.db import init_db
-
-
-@asynccontextmanager
-async def lifespan():
-    init_db()
-    yield
-
+Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def get_settings():
+    return Settings()
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

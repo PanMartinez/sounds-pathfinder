@@ -1,13 +1,17 @@
 from datetime import datetime
-from uuid import UUID, uuid4
+from uuid import uuid4
 from typing import Optional
 from sqlalchemy import Column, DateTime, func
-from sqlmodel import Field, SQLModel
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.ext.declarative import declarative_base
 
 
-class BaseModel(SQLModel):
-    id: UUID = Field(default_factory=uuid4, primary_key=True)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: Optional[datetime] = Field(
-        sa_column=Column(DateTime(), onupdate=func.now())
-    )
+Base = declarative_base()
+
+
+class BaseModel(Base):
+    __abstract__ = True
+
+    id: UUID = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
+    created_at: datetime = Column(DateTime(), default=func.now())
+    updated_at: Optional[datetime] = Column(DateTime(), onupdate=func.now())
